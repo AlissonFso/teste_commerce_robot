@@ -1,0 +1,45 @@
+name: Testes do Robot Framework
+
+on:
+  workflow_dispatch:
+    inputs:
+      teste_scenario:
+        type: choice
+        description: 'Teste scenario'
+        options: 
+        - scenarios       
+
+jobs:
+  run_testes:
+    name: Run Robot tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout do repositório
+      uses: actions/checkout@v2
+
+    - name: Configurar Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11.2'
+
+    - name: Instalar dependências
+      run: |
+        pip install -r requirements.txt
+
+    - name: Rodar testes com o Robot Framework
+      run: |
+        robot scenarios/${{github.event.inputs.teste_scenario}}.robot
+    
+    - name: Storage Robot Report
+      uses: actions/upload-artifact@v3
+      with: 
+        name: Robot_report
+        path: report.html
+    
+    - name: Publish Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./report.html
+        destination_dir: ./

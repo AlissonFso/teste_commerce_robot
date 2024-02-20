@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+    paths:
+      - '**.robot'
+    branches: 
+      - 'main'
+      - 'release-**'
+
+  workflow_dispatch:
+
+permissions: write-all
+
+
+jobs:
+  test-CI:
+    continue-on-error: false
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout do repositório
+      uses: actions/checkout@v2
+
+    - name: Configurar Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11.2'
+
+    - name: Instalar dependências
+      run: |
+        pip install -r requirements.txt
+
+    - name: Rodar testes com o Robot Framework
+      run: |
+        robot scenarios\scenarios.robot
+      
+    - name: Generate Log
+      id: log
+      run: |
+        docker-compose -f "docker-compose.yml" logs -f >> cypress-test.log
+        echo "test-result=$(grep -oh -m 1 'AssertionError\|CypressError\|failing\|Error:' cypress-test.log)">> $GITHUB_OUTPUT
+    
+    - name: Test Result - FAILED
+      if: contains(steps.log.outputs.test-result, 'Error') || contains(steps.log.outputs.test-result, 'failing')
+      uses: actions/github-script@v6
+      with:
+        script: |
+            core.setFailed('Test Result: FAILED')
+
+    - name: Test Result - PASSED
+      if: "!contains(steps.log.outputs.test-result, 'Error') || !contains(steps.log.outputs.test-result, 'failing')"
+      run: |
+        echo "Test Result: PASSED"
+    
+    - name: Storage HTML Report
+      uses: actions/upload-artifact@v3
+      with: 
+        name: CI HTML Report - ${{ matrix.name }}
+        path: cypress/test-results/
