@@ -14,8 +14,8 @@ permissions: write-all
 
 
 jobs:
-  test-CI:
-    continue-on-error: false
+  run_testes:
+    name: Run Robot tests
     runs-on: ubuntu-latest
     
     steps:
@@ -33,28 +33,22 @@ jobs:
 
     - name: Rodar testes com o Robot Framework
       run: |
-        robot scenarios\scenarios.robot
-      
-    - name: Generate Log
-      id: log
-      run: |
-        docker-compose -f "docker-compose.yml" logs -f >> cypress-test.log
-        echo "test-result=$(grep -oh -m 1 'AssertionError\|CypressError\|failing\|Error:' cypress-test.log)">> $GITHUB_OUTPUT
+        robot scenarios/${{github.event.inputs.teste_scenario}}.robot
     
-    - name: Test Result - FAILED
-      if: contains(steps.log.outputs.test-result, 'Error') || contains(steps.log.outputs.test-result, 'failing')
-      uses: actions/github-script@v6
-      with:
-        script: |
-            core.setFailed('Test Result: FAILED')
-
-    - name: Test Result - PASSED
-      if: "!contains(steps.log.outputs.test-result, 'Error') || !contains(steps.log.outputs.test-result, 'failing')"
-      run: |
-        echo "Test Result: PASSED"
-    
-    - name: Storage HTML Report
+    - name: Storage Robot Report
       uses: actions/upload-artifact@v3
       with: 
-        name: CI HTML Report - ${{ matrix.name }}
-        path: cypress/test-results/
+        name: Robot_report
+        path: report.html
+    
+    - name: Move report files
+      run: |
+        mkdir ./html
+        mv report.html ./html
+    
+    - name: Publish Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./html
+        destination_dir: ./
