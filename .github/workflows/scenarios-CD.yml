@@ -37,9 +37,14 @@ jobs:
         name: Robot_report
         path: report.html
     
+    - name: Move report files
+      run: |
+        mkdir ./html
+        mv report.html ./html
+    
     - name: Publish Github Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./report.html
+        publish_dir: ./html
         destination_dir: ./teste/
