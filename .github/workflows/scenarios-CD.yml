@@ -33,15 +33,20 @@ jobs:
       id: update_tag
       run: |
         if [[ "${{ github.event.inputs.teste_scenario }}" == "all_tests" ]]; then
-          updated_tag="**"
+          updated_tag="${{matrix.tags}} and @SANITY"
         else
-          updated_tag="${{ github.event.inputs.teste_scenario }}"
+          updated_tag="${{matrix.tags}}"
         fi
         echo "new_tag=$updated_tag" >> $GITHUB_OUTPUT
 
     - name: Rodar testes com o Robot Framework
       run: |
-        robot scenarios/${{ steps.update_tag.outputs.new_tag }}.robot
+        if [[ "${{ github.event.inputs.teste_scenario }}" == "all_tests" ]]; then
+          robot scenarios/**.robot
+        else
+          robot scenarios/${{ github.event.inputs.teste_scenario }}.robot
+        fi
+        
     
     - name: Storage Robot Report
       uses: actions/upload-artifact@v3
