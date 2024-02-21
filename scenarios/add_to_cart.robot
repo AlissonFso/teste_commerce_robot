@@ -15,3 +15,4 @@ Check buy a product in store
     Click Element    ${BAG_BUTTON}
     Wait Until Element Is Visible    ${BAG_RESUME}
     Close All Browsers
+    
