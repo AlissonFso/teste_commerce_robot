@@ -1,4 +1,4 @@
-name: Testes do Robot Framework
+name: Robot Tests CD
 
 on:
   workflow_dispatch:
@@ -7,7 +7,9 @@ on:
         type: choice
         description: 'Teste scenario'
         options: 
-        - scenarios       
+        - add_to_cart
+        - search_error
+        - all_tests       
 
 jobs:
   run_testes:
@@ -26,10 +28,25 @@ jobs:
     - name: Instalar dependências
       run: |
         pip install -r requirements.txt
-
-    - name: Rodar testes com o Robot Framework
+    
+    - name: Select version
+      id: update_tag
       run: |
-        robot scenarios/${{github.event.inputs.teste_scenario}}.robot
+        if [[ "${{ github.event.inputs.teste_scenario }}" == "all_tests" ]]; then
+          updated_tag="${{matrix.tags}} and @SANITY"
+        else
+          updated_tag="${{matrix.tags}}"
+        fi
+        echo "new_tag=$updated_tag" >> $GITHUB_OUTPUT
+
+    - name: Run tests
+      run: |
+        if [[ "${{ github.event.inputs.teste_scenario }}" == "all_tests" ]]; then
+          robot scenarios/**.robot
+        else
+          robot scenarios/${{ github.event.inputs.teste_scenario }}.robot
+        fi
+        
     
     - name: Storage Robot Report
       uses: actions/upload-artifact@v3

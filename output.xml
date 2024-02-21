@@ -1,80 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.11.2 on win32)" generated="2024-02-20T19:14:21.276392" rpa="false" schemaversion="5">
-<suite id="s1" name="Scenarios" source="C:\Users\Pichau\Documents\robot_teste\scenarios\scenarios.robot">
-<test id="s1-t1" name="Check buy a product in store" line="6">
+<robot generator="Robot 7.0 (Python 3.11.2 on win32)" generated="2024-02-20T23:55:53.892940" rpa="false" schemaversion="5">
+<suite id="s1" name="Add To Cart &amp; Search Error">
+<suite id="s1-s1" name="Add To Cart" source="C:\Users\Pichau\Documents\teste_robot\scenarios\add_to_cart.robot">
+<test id="s1-s1-t1" name="Check buy a product in store" line="6">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-02-20T19:14:21.412504" level="INFO">Opening browser 'headlesschrome' to base url 'https://www.magazineluiza.com.br/'.</msg>
+<msg time="2024-02-20T23:55:54.035318" level="INFO">Opening browser 'headlesschrome' to base url 'https://www.magazineluiza.com.br/'.</msg>
 <arg>${BASEURL}</arg>
 <arg>headlesschrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-02-20T19:14:21.412504" elapsed="4.188150"/>
+<status status="PASS" start="2024-02-20T23:55:54.035318" elapsed="3.732237"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2024-02-20T19:14:25.600654" elapsed="0.115583"/>
+<status status="PASS" start="2024-02-20T23:55:57.767555" elapsed="0.112647"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-02-20T19:14:25.716237" level="INFO">Typing text 'air fryer' into text field 'id=input-search'.</msg>
+<msg time="2024-02-20T23:55:57.881415" level="INFO">Typing text 'air fryer' into text field 'id=input-search'.</msg>
 <arg>${SEARCH_FIELD}</arg>
 <arg>air fryer</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-02-20T19:14:25.716237" elapsed="0.613894"/>
+<status status="PASS" start="2024-02-20T23:55:57.881415" elapsed="0.631377"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-02-20T19:14:26.330131" level="INFO">Clicking element 'xpath://*[name()='svg' and @data-testid='search-submit']'.</msg>
+<msg time="2024-02-20T23:55:58.513795" level="INFO">Clicking element 'xpath://*[name()='svg' and @data-testid='search-submit']'.</msg>
 <arg>${SEARCH_BUTTON}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-02-20T19:14:26.330131" elapsed="0.152485"/>
+<status status="PASS" start="2024-02-20T23:55:58.512792" elapsed="0.121492"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${PRODUCT_TITLE}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-02-20T19:14:26.482616" elapsed="3.076263"/>
+<status status="PASS" start="2024-02-20T23:55:58.634284" elapsed="2.669290"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-02-20T19:14:29.558879" level="INFO">Clicking element 'xpath://h2[@data-testid='product-title' and text()='Fritadeira Elétrica sem Óleo/Air Fryer Nell Smart']'.</msg>
+<msg time="2024-02-20T23:56:01.304574" level="INFO">Clicking element 'xpath://h2[@data-testid='product-title' and text()='Fritadeira Elétrica sem Óleo/Air Fryer Nell Smart']'.</msg>
 <arg>${AIR_FRYER_TITLE}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-02-20T19:14:29.558879" elapsed="0.159378"/>
+<status status="PASS" start="2024-02-20T23:56:01.303574" elapsed="0.181274"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${VOLTAGE_SELECTOR}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-02-20T19:14:29.718257" elapsed="1.151299"/>
+<status status="PASS" start="2024-02-20T23:56:01.484848" elapsed="1.186725"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-02-20T19:14:30.869556" level="INFO">Clicking element 'xpath://label[@data-testid='attribute-item' and text()='110V']'.</msg>
+<msg time="2024-02-20T23:56:02.671573" level="INFO">Clicking element 'xpath://label[@data-testid='attribute-item' and text()='110V']'.</msg>
 <arg>${VOLTAGE_SELECTOR}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-02-20T19:14:30.869556" elapsed="0.073845"/>
+<status status="PASS" start="2024-02-20T23:56:02.671573" elapsed="0.140414"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-02-20T19:14:30.944404" level="INFO">Clicking element 'xpath://button[@data-testid='bagButton']'.</msg>
+<msg time="2024-02-20T23:56:02.811987" level="INFO">Clicking element 'xpath://button[@data-testid='bagButton']'.</msg>
 <arg>${BAG_BUTTON}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-02-20T19:14:30.944404" elapsed="0.100457"/>
+<status status="PASS" start="2024-02-20T23:56:02.811987" elapsed="0.238378"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${BAG_RESUME}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-02-20T19:14:31.045867" elapsed="1.271269"/>
+<status status="PASS" start="2024-02-20T23:56:03.050365" elapsed="0.693431"/>
 </kw>
 <kw name="Close All Browsers" owner="SeleniumLibrary">
 <doc>Closes all open browsers and resets the browser cache.</doc>
-<status status="PASS" start="2024-02-20T19:14:32.317136" elapsed="6.132206"/>
+<status status="PASS" start="2024-02-20T23:56:03.743796" elapsed="6.192822"/>
 </kw>
-<status status="PASS" start="2024-02-20T19:14:21.411505" elapsed="17.038852"/>
+<status status="PASS" start="2024-02-20T23:55:54.034074" elapsed="15.902544"/>
 </test>
-<status status="PASS" start="2024-02-20T19:14:21.278392" elapsed="17.172965"/>
+<status status="PASS" start="2024-02-20T23:55:53.910376" elapsed="16.027242"/>
+</suite>
+<suite id="s1-s2" name="Search Error" source="C:\Users\Pichau\Documents\teste_robot\scenarios\search_error.robot">
+<test id="s1-s2-t1" name="Check search product with error" line="7">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-20T23:56:09.941587" level="INFO">Opening browser 'headlesschrome' to base url 'https://www.magazineluiza.com.br/'.</msg>
+<arg>${BASEURL}</arg>
+<arg>headlesschrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-20T23:56:09.941587" elapsed="3.146098"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-02-20T23:56:13.087685" elapsed="0.122998"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-20T23:56:13.211709" level="INFO">Typing text 'wqeqweqw' into text field 'id=input-search'.</msg>
+<arg>${SEARCH_FIELD}</arg>
+<arg>wqeqweqw</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-20T23:56:13.211709" elapsed="0.318920"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-20T23:56:13.530629" level="INFO">Clicking element 'xpath://*[name()='svg' and @data-testid='search-submit']'.</msg>
+<arg>${SEARCH_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-20T23:56:13.530629" elapsed="0.482595"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${SEARCH_ERROR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-20T23:56:14.013224" elapsed="1.176576"/>
+</kw>
+<status status="PASS" start="2024-02-20T23:56:09.940582" elapsed="5.249218"/>
+</test>
+<status status="PASS" start="2024-02-20T23:56:09.938122" elapsed="5.252679"/>
+</suite>
+<status status="PASS" start="2024-02-20T23:55:53.893947" elapsed="21.298252"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Scenarios">Scenarios</stat>
+<stat pass="2" fail="0" skip="0" id="s1" name="Add To Cart &amp; Search Error">Add To Cart &amp; Search Error</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Add To Cart">Add To Cart &amp; Search Error.Add To Cart</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="Search Error">Add To Cart &amp; Search Error.Search Error</stat>
 </suite>
 </statistics>
 <errors>
