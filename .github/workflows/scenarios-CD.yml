@@ -1,4 +1,4 @@
-name: Testes do Robot Framework
+name: Robot Tests CD
 
 on:
   workflow_dispatch:
