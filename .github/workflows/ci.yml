@@ -31,7 +31,7 @@ jobs:
 
     - name: Rodar testes com o Robot Framework
       run: |
-        robot scenarios/scenarios.robot
+        robot scenarios/**.robot
     
     - name: Storage Robot Report
       uses: actions/upload-artifact@v3
