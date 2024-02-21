@@ -39,7 +39,7 @@ jobs:
         fi
         echo "new_tag=$updated_tag" >> $GITHUB_OUTPUT
 
-    - name: Rodar testes com o Robot Framework
+    - name: Run tests
       run: |
         if [[ "${{ github.event.inputs.teste_scenario }}" == "all_tests" ]]; then
           robot scenarios/**.robot
