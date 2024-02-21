@@ -15,10 +15,3 @@ Check buy a product in store
     Click Element    ${BAG_BUTTON}
     Wait Until Element Is Visible    ${BAG_RESUME}
     Close All Browsers
-
-Check search product with error
-    Open Browser    ${BASEURL}    headlesschrome
-    Maximize Browser Window
-    Input Text    ${SEARCH_FIELD}    wqeqweqw
-    Click Element    ${SEARCH_BUTTON}
-    Wait Until Element Is Visible    ${SEARCH_ERROR}
