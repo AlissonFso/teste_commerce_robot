@@ -7,3 +7,4 @@ ${VOLTAGE_SELECTOR}     xpath://label[@data-testid='attribute-item' and text()='
 ${BAG_BUTTON}           xpath://button[@data-testid='bagButton']
 ${BAG_RESUME}           xpath://p[contains(text(), 'Fritadeira Elétrica sem Óleo/Air Frye...')]
 ${BASEURL}              https://www.magazineluiza.com.br/
+${SEARCH_ERROR}         xpath://h1[contains(@class, 'sc-idnGQK') and contains(@class, 'fVkxdn') and contains(text(), 'Sua busca por "wqeqweqw" não encontrou resultado algum')]
